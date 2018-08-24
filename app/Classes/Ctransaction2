@@ -1,0 +1,46 @@
+
+
+<?php 
+
+include_once "../valornut/dbconnect.php";
+namespace App\Classes;
+  class Ctransaction2{
+
+
+public function buscarTransaccion($key,$idUser){
+                  $mdbconnect = new dbconnect();
+                  $mdb = $mdbconnect->getDBConnection();
+                  $resultado = "error";                
+              $query = "SELECT id FROM transactions WHERE idUser='$idUser' AND borrado=0;";
+              $result = mysql_query($query,$mdb);
+      
+        if($row = mysql_fetch_row($result)){          
+            $id_transaction = $row[0];        
+        }
+        if($id_transaction>0 and id_transaction != null){
+
+          if($id_transaction==$key){
+              $query = "UPDATE transactions SET borrado='1' WHERE id=$id_transaction";
+              
+              if(mysql_query($query,$mdb)){
+                $resultado="corecto";
+              }
+
+          }else{
+
+            $query = "UPDATE transactions SET borrado='0' WHERE id=$id_transaction";
+              
+              if(mysql_query($query,$mdb)){
+                $resultado="incorrecto";
+              }
+
+          }
+             
+        }
+            $mdbconnect->closeDBConnection();            
+            return $resultado;
+            }
+          }
+  
+
+  ?>

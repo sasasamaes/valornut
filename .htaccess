@@ -1,0 +1,16 @@
+# Use PHP5.4 as default
+AddHandler application/x-httpd-php54 .php
+
+<Files 403.shtml>
+order allow,deny
+allow from all
+</Files>
+
+deny from 88.196.134.250
+deny from 27.235.18.20
+deny from 27.251.61.140
+deny from 24.182.143.248
+deny from 216.145.162.35
+deny from 27.0.0.0/8
+deny from 75.119.198.105
+deny from 182.18.153.68
